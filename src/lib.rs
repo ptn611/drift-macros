@@ -4,7 +4,10 @@ use proc_macro::TokenStream;
 use quote::{format_ident, quote};
 use syn::{Data, DeriveInput, Fields, Ident, ItemStruct, Type, parse_macro_input, parse_quote};
 
-#[allow(clippy::panic)]
+#[allow(
+    clippy::panic,
+    reason = "Proc macro — panic! is the correct way to report compile-time errors"
+)]
 #[proc_macro_attribute]
 pub fn assert_no_slop(_: TokenStream, input: TokenStream) -> TokenStream {
     let derive_input = parse_macro_input!(input as DeriveInput);
